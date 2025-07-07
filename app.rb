@@ -12,7 +12,7 @@ end
 
 get '/new' do 
 
-	erb "Hello w"
+	erb :new
 
 end
 
