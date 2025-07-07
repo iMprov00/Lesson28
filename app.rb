@@ -16,6 +16,7 @@ configure do
 
 	init_db
 	@db.execute 'create table if not exists "Posts" ("id" integer primary key autoincrement, "create_date" date, "content" text)'
+	@db.execute 'create table if not exists "Comment" ("id" integer primary key autoincrement, "create_date" date, "comment" text, "post_id" integer)'
 
 end
 
@@ -63,9 +64,16 @@ post '/post/:id' do
 
 	id = params[:id]
 
-	content = params[:content]
+	content = params[:content].to_s
 
-	erb "Коммент #{content}"
+	if content.empty?
+		@error = "Введите текст"
+		return erb :new
+	end
+
+	@db.execute "insert into Comment (comment, create_date, post_id) values (?, datetime(), ?)", [content, id]
+
+	redirect to ('/post/' + id)
 
 
 end
