@@ -21,7 +21,7 @@ end
 
 get '/' do 
 
-	@result = @db.execute 'insert into Posts order by id desc'
+	@result = @db.execute 'select * from Posts order by id desc'
 
 	erb :index
 
