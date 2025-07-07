@@ -9,10 +9,19 @@
 </p>
 <br>
 <h4>Комментарии:</h4>
+
+	<% @comments.each do |comment| %>
+	<p>
+		<%= comment['content'] %>
+
+	</p>
+	<% end %>
 <p>
 	<form action="/post/<%= @row['id'] %>
 " method=POST> 
 	  <div class="form-floating">
+	  	Добавить комментарий: 
+	  	<br>
 	    <textarea name="content" class="form-control" placeholder="Введите описание" id="floatingTextarea2" style="height: 150px"></textarea>
 	  </div>
 	  <br>
