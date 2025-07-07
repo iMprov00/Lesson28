@@ -52,6 +52,9 @@ get '/post/:id' do
 
 	id = params[:id ]
 
-	erb "Комментарий к посту номер #{id}"
+	@result = @db.execute 'select * from Posts where id = ?', [id]
+	@row = @result[0]
+
+	erb :post
 
 end
