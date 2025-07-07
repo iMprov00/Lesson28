@@ -56,6 +56,8 @@ get '/post/:id' do
 	@result = @db.execute 'select * from Posts where id = ?', [id]
 	@row = @result[0]
 
+	@comments = @db.execute 'select * from Comment where post_id = ?', [id]
+
 	erb :post
 
 end
