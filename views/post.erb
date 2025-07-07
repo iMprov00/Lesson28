@@ -1,10 +1,20 @@
-<h2>Комментарии:</h2>
 <p>
 	<h4>Пост:</h4>
 
 	<%= @row['content'] %>
 	<br>
 	<br>
-	Дата добавление <%= @row['created_date'] %>
+	Дата добавление <%= @row['create_date'] %>
 
 </p>
+<br>
+<h4>Комментарии:</h4>
+<p>
+	<form action="/post/<%= @row['id'] %>
+" method=POST> 
+	  <div class="form-floating">
+	    <textarea name="content" class="form-control" placeholder="Введите описание" id="floatingTextarea2" style="height: 150px"></textarea>
+	  </div>
+	  <br>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form> 
