@@ -33,7 +33,12 @@ end
 
 post '/new' do  
 
-	@content = params[:content]
+	@content = params[:content].to_s
+
+	if @content.empty?
+		@error = "Введите текст"
+		return erb :new
+	end
 
 	erb "Ты ввел: #{@content}"
 
